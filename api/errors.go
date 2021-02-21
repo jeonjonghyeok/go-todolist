@@ -45,11 +45,11 @@ var internalError = simpleError{
 }
 
 var notFoundError = simpleError{
-	message: "Not Found"
-	status: http.StatusNotFound,
+	message: "Not Found",
+	status:  http.StatusNotFound,
 }
 
 var malformedInputError = simpleError{
 	message: "malformed input error",
-	status: http.StatusBadRequest,
+	status:  http.StatusBadRequest,
 }

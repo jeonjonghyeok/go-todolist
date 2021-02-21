@@ -5,8 +5,10 @@ import (
 	"io"
 	"log"
 	"net/http"
+	"strconv"
 
-	"github.com/jeonjonghyeok/go-run/todolist_ex/db"
+	"github.com/gorilla/mux"
+	"github.com/jeonjonghyeok/todolist/db"
 )
 
 func must(err error) {
@@ -31,8 +33,13 @@ func parseJSON(r io.Reader, v interface{}) {
 	}
 }
 
-/*
-func parseIntParam(r *http.Request,key string) int {
-	vars
+func parseIntParam(r *http.Request, key string) int {
+	vars := mux.Vars(r)
+	if v, ok := vars[key]; ok {
+		i, err := strconv.Atoi(v)
+		if err == nil {
+			return i
+		}
+	}
+	panic(malformedInputError)
 }
-*/

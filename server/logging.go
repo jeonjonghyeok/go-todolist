@@ -18,8 +18,8 @@ func (s *statusCapturingResponseWriter) WriteHeader(statusCode int) {
 func loggingMiddleware(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		statusCapturingWriter := &statusCapturingResponseWriter{
-			http.ResponseWriter: w,
-			status:              http.StatusOK,
+			ResponseWriter: w,
+			status:         http.StatusOK,
 		}
 		next.ServeHTTP(statusCapturingWriter, r)
 

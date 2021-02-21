@@ -1,6 +1,6 @@
 package db
 
-import "github.com/go-run/todolist_ex/todo"
+import "github.com/jeonjonghyeok/todolist/todo"
 
 func GetTodoLists() ([]todo.List, error) {
 	rows, err := db.Query(`SELECT id, name FROM todo_list`)
@@ -20,9 +20,9 @@ func GetTodoLists() ([]todo.List, error) {
 	return lists, nil
 }
 
-func CreateTodoList(name string) (list todo.List, error) {
+func CreateTodoList(name string) (list todo.List, err error) {
 	list.Name = name
-	db.Query(`INSERT INTO todo_list (name) VALUES ($1)
-		RETURNING id`,name).Scan(&list.ID)
+	err = db.QueryRow(`INSERT INTO todo_list (name) VALUES ($1)
+		RETURNING id`, name).Scan(&list.ID)
 	return
 }

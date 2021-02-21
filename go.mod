@@ -1,3 +1,8 @@
-module github.com/jeonjonghyeok/go-run/todolist_ex
+module github.com/jeonjonghyeok/todolist
 
 go 1.15
+
+require (
+	github.com/gorilla/mux v1.8.0
+	github.com/lib/pq v1.9.0
+)

@@ -3,15 +3,15 @@ package api
 import (
 	"net/http"
 
-	"github.com/golila/mux"
+	"github.com/gorilla/mux"
 )
 
 func TodoListAPI() http.Handler {
 	router := mux.NewRouter()
 
-	router.HandleFunc("/todos", getTodoList).Methods(http.MethodGet)
-	router.HandleFunc("/todos", createTodoList)Methods(http.MethodPost)
-	router.use(handlePanic)
+	router.HandleFunc("/lists", getTodoLists).Methods(http.MethodGet)
+	router.HandleFunc("/list", createTodoList).Methods(http.MethodPost)
+	router.Use(handlePanic)
 
 	return router
 
